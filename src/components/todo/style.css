@@ -75,7 +75,7 @@ body {
 	font-size: 100px;
 	font-weight: 100;
 	text-align: center;
-	color: rgba(175, 47, 47, 0.15);
+	color: rgba(45, 138, 26, 0.15);
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
@@ -231,13 +231,15 @@ body {
 	height: 40px;
 	margin: auto 0;
 	font-size: 30px;
-	color: #cc9a9a;
+	color: #2D8A1A;
+	/* color: #cc9a9a; */
 	margin-bottom: 11px;
 	transition: color 0.2s ease-out;
 }
 
 .todo-list li .destroy:hover {
-	color: #af5b5e;
+	/* color: #af5b5e; */
+	color: #2D8A1A;
 }
 
 .todo-list li .destroy:after {
@@ -312,11 +314,11 @@ body {
 }
 
 .filters li a:hover {
-	border-color: rgba(175, 47, 47, 0.1);
+	border-color: rgba(45, 138, 26, 0.1);
 }
 
 .filters li a.selected {
-	border-color: rgba(175, 47, 47, 0.2);
+	border-color: rgba(45, 138, 26, 0.2);
 }
 
 .clear-completed,
