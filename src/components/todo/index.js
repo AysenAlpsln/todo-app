@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import "./style.css";
 
@@ -19,25 +19,29 @@ function Todo() {
         }
     ]);
 
+    useEffect(() => {
+        console.log(todos)
+    }, [todos])
+
     return (
         <div>
-            <section class="todoapp">
-                <header class="header">
+            <section className="todoapp">
+                <header className="header">
                     <h1>todos</h1>
-                    <Form />
+                    <Form addTodo={setTodos} todos={todos} />
                 </header>
 
                <List todos={todos} />
 
-                <footer class="footer">
-                    <span class="todo-count">
+                <footer className="footer">
+                    <span className="todo-count">
                         <strong>2</strong>
                         items left
                     </span>
 
-                    <ul class="filters">
+                    <ul className="filters">
                         <li>
-                            <a class="selected">All</a>
+                            <a className="selected">All</a>
                         </li>
                         <li>
                             <a>Active</a>
@@ -47,13 +51,13 @@ function Todo() {
                         </li>
                     </ul>
 
-                    <button class="clear-completed">
+                    <button className="clear-completed">
                         Clear completed
                     </button>
                 </footer>
             </section>
 
-            <footer class="info">
+            <footer className="info">
                 <p>Click to edit a todo</p>
             </footer>
         </div>

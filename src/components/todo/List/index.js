@@ -1,22 +1,22 @@
-import { useState } from 'react'
+import { React } from 'react'
 
 function List({ todos }) {
     return (
         <div>
-            <section class="main">
-                <input class="toggle-all" type="checkbox" />
-                <label for="toggle-all">
+            <section className="main">
+                <input className="toggle-all" type="checkbox" />
+                <label htmlFor="toggle-all">
                     Mark all as complete
                 </label>
 
-                <ul class="todo-list">
+                <ul className="todo-list">
                     {
                         todos.map((todo, i) => (
-                            <li key={i} class={todo.completed}>
-                                <div class="view">
-                                    <input class="toggle" type="checkbox" />
+                            <li key={i} className={todo.completed}>
+                                <div className="view">
+                                    <input className="toggle" type="checkbox" />
                                     <label>{todo.todo_data}</label>
-                                    <button class="destroy"></button>
+                                    <button className="destroy"></button>
                                 </div>
                             </li>
                         ))
