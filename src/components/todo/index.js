@@ -8,14 +8,17 @@ import Form from './Form';
 function Todo() {
     const [todos, setTodos] = useState([
         {
+            id: 0,
             todo_data: 'Learn Javascript',
-            completed: "completed"
+            completed: true
         },{
+            id: 1,
             todo_data: 'Learn React',
-            completed: ""
+            completed: false
         },{
+            id: 2,
             todo_data: 'Have a life!',
-            completed: ""
+            completed: false
         }
     ]);
 
@@ -31,7 +34,7 @@ function Todo() {
                     <Form addTodo={setTodos} todos={todos} />
                 </header>
 
-               <List todos={todos} />
+               <List setStatus={setTodos} todos={todos} />
 
                 <footer className="footer">
                     <span className="todo-count">

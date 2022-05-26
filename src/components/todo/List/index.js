@@ -1,9 +1,21 @@
 import { React } from 'react'
 
-function List({ todos }) {
+function List({ setStatus, todos }) {
+
+    const changeStatus = (e) => {
+        let changeTodo = todos.map((todo) => {
+            if(parseInt(todo.id) === parseInt(e.target.id)) {
+                return { ...todo, completed: !todo.completed};
+            }
+            return todo;
+        });
+        setStatus(changeTodo);
+    }
+    
+
     return (
         <div>
-            <section className="main">
+            <div className="main">
                 <input className="toggle-all" type="checkbox" />
                 <label htmlFor="toggle-all">
                     Mark all as complete
@@ -11,39 +23,28 @@ function List({ todos }) {
 
                 <ul className="todo-list">
                     {
-                        todos.map((todo, i) => (
-                            <li key={i} className={todo.completed}>
+                        todos.map((todo) => (
+                            <li key={todo.id} id={todo.id} className={todo.completed ? "completed":""}>
                                 <div className="view">
-                                    <input className="toggle" type="checkbox" />
+                                    <input 
+                                        className="toggle" 
+                                        type="checkbox"
+                                        defaultChecked= {todo.completed} 
+                                        id={todo.id}
+                                        onClick={changeStatus} 
+                                    />
+
                                     <label>{todo.todo_data}</label>
-                                    <button className="destroy"></button>
+
+                                    <button 
+                                        className="destroy"
+                                    ></button>
                                 </div>
                             </li>
                         ))
                     }
-                    {/* <li class="completed">
-                        <div class="view">
-                            <input class="toggle" type="checkbox" />
-                            <label>Learn JavaScript</label>
-                            <button class="destroy"></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="view">
-                            <input class="toggle" type="checkbox" />
-                            <label>Learn React</label>
-                            <button class="destroy"></button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="view">
-                            <input class="toggle" type="checkbox" />
-                            <label>Have a life!</label>
-                            <button class="destroy"></button>
-                        </div>
-                    </li> */}
                 </ul>
-            </section>
+            </div>
         </div>
     )
 }
