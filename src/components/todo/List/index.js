@@ -1,6 +1,6 @@
 import { React } from 'react'
 
-function List({ setStatus, todos }) {
+function List({ setStatus, todos, hide }) {
 
     const changeStatus = (e) => {
         let changeTodo = todos.map((todo) => {
@@ -15,6 +15,15 @@ function List({ setStatus, todos }) {
     const deleteTodo = (e) =>{
         setStatus(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id)))
     }
+
+    const isHidden = (e) => {
+        if(e.length === 0 ){
+            return "todo-list hidden"
+        }
+        else{
+            return "todo-list"
+        }
+    }
     
 
     return (
@@ -25,7 +34,7 @@ function List({ setStatus, todos }) {
                     Mark all as complete
                 </label>
 
-                <ul className="todo-list">
+                <ul className={isHidden(todos)}>
                     {
                         todos.map((todo) => (
                             <li key={todo.id} id={todo.id} className={todo.completed ? "completed":""}>

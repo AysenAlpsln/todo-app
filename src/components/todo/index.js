@@ -23,6 +23,8 @@ function Todo() {
         }
     ]);
 
+    const [hide, setHide] = useState("All");
+
     useEffect(() => {
         console.log(todos)
     }, [todos])
@@ -35,9 +37,9 @@ function Todo() {
                     <Form addTodo={setTodos} todos={todos} />
                 </header>
 
-                <List setStatus={setTodos} todos={todos} />
+                <List setStatus={setTodos} todos={todos} hide={hide} />
 
-                <Footer todos={todos} />
+                <Footer todos={todos} hide={hide} />
             </section>
 
             <footer className="info">
