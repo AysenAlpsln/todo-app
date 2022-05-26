@@ -11,6 +11,10 @@ function List({ setStatus, todos }) {
         });
         setStatus(changeTodo);
     }
+
+    const deleteTodo = (e) =>{
+        setStatus(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id)))
+    }
     
 
     return (
@@ -38,6 +42,8 @@ function List({ setStatus, todos }) {
 
                                     <button 
                                         className="destroy"
+                                        id={todo.id}
+                                        onClick={deleteTodo}
                                     ></button>
                                 </div>
                             </li>
