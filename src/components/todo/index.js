@@ -1,9 +1,10 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import "./style.css";
 
 import List from './List';
 import Form from './Form';
+import Footer from './Footer';
 
 function Todo() {
     const [todos, setTodos] = useState([
@@ -11,11 +12,11 @@ function Todo() {
             id: 0,
             todo_data: 'Learn Javascript',
             completed: true
-        },{
+        }, {
             id: 1,
             todo_data: 'Learn React',
             completed: false
-        },{
+        }, {
             id: 2,
             todo_data: 'Have a life!',
             completed: false
@@ -34,30 +35,9 @@ function Todo() {
                     <Form addTodo={setTodos} todos={todos} />
                 </header>
 
-               <List setStatus={setTodos} todos={todos} />
+                <List setStatus={setTodos} todos={todos} />
 
-                <footer className="footer">
-                    <span className="todo-count">
-                        <strong>{todos.length}</strong>
-                        items left
-                    </span>
-
-                    <ul className="filters">
-                        <li>
-                            <a className="selected">All</a>
-                        </li>
-                        <li>
-                            <a>Active</a>
-                        </li>
-                        <li>
-                            <a>Completed</a>
-                        </li>
-                    </ul>
-
-                    <button className="clear-completed">
-                        Clear completed
-                    </button>
-                </footer>
+                <Footer todos={todos} />
             </section>
 
             <footer className="info">
