@@ -37,9 +37,9 @@ function Todo() {
                     <Form addTodo={setTodos} todos={todos} />
                 </header>
 
-                <List setStatus={setTodos} todos={todos} hide={hide} />
+                <List setTodos={setTodos} todos={todos} hide={hide} />
 
-                <Footer todos={todos} hide={hide} />
+                <Footer todos={todos} hide={hide} clearCompleted={setTodos} />
             </section>
 
             <footer className="info">

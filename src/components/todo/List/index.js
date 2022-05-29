@@ -1,6 +1,6 @@
 import { React } from 'react'
 
-function List({ setStatus, todos, hide }) {
+function List({ setTodos, todos, hide }) {
 
     const changeStatus = (e) => {
         let changeTodo = todos.map((todo) => {
@@ -9,11 +9,11 @@ function List({ setStatus, todos, hide }) {
             }
             return todo;
         });
-        setStatus(changeTodo);
+        setTodos(changeTodo);
     }
 
     const deleteTodo = (e) =>{
-        setStatus(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id)))
+        setTodos(todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id)))
     }
 
     const isHidden = (e) => {
@@ -24,12 +24,27 @@ function List({ setStatus, todos, hide }) {
             return "todo-list"
         }
     }
+
+    const allComplete = (e) => {
+        let allComplete = todos.map((todo) => {
+            if(todo.completed === false) {
+                console.log("hepsi tamam")
+            }
+            return todo;
+        });
+        e.target.defaultChecked = true
+        setTodos(allComplete);
+    }
     
 
     return (
         <div>
             <div className="main">
-                <input className="toggle-all" type="checkbox" />
+                <input
+                    className="toggle-all"
+                    type="checkbox"
+                    onClick={allComplete}
+                    defaultChecked={false} />
                 <label htmlFor="toggle-all">
                     Mark all as complete
                 </label>

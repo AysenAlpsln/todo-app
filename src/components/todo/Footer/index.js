@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Footer({todos, hide}) {
+function Footer({todos, hide, clearCompleted}) {
 
     const notComplete = todos.filter((todo) => todo.completed === false)
     const completed = todos.filter((todo) => todo.completed === true)
@@ -23,6 +23,12 @@ function Footer({todos, hide}) {
         }
     }
 
+    const deleteCompleted = () => {
+        if(completed.length > 0){
+            clearCompleted(notComplete)
+        }
+    }
+
     return (
         <footer className={isHidden(todos)}>
             <span className="todo-count">
@@ -42,7 +48,7 @@ function Footer({todos, hide}) {
                 </li>
             </ul>
 
-            <button className={hiddenDelete(completed)}>
+            <button onClick={deleteCompleted} className={hiddenDelete(completed)}>
                 Clear completed
             </button>
         </footer>
