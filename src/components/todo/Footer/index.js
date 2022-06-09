@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Footer({todos, hide, clearCompleted}) {
+function Footer({todos, clearCompleted, setSelected}) {
 
     const notComplete = todos.filter((todo) => todo.completed === false)
     const completed = todos.filter((todo) => todo.completed === true)
+
+    const [select, setSelect] = useState(["selected", "", ""]);
 
     const isHidden = (e) => {
         if(e.length === 0 ){
@@ -29,6 +31,16 @@ function Footer({todos, hide, clearCompleted}) {
         }
     }
 
+    const selectedAll = () => {
+        setSelect(["selected", "", ""]);
+    }
+    const selectedActive = () => {
+        setSelect(["", "selected", ""]);
+    }
+    const selectedCompleted = () => {
+        setSelect(["", "", "selected"]);
+    }
+
     return (
         <footer className={isHidden(todos)}>
             <span className="todo-count">
@@ -37,16 +49,22 @@ function Footer({todos, hide, clearCompleted}) {
             </span>
 
             <ul className="filters">
-                <li>
-                    <a className="selected">All</a>
-                </li>
-                <li>
-                    <a>Active</a>
-                </li>
-                <li>
-                    <a>Completed</a>
-                </li>
-            </ul>
+        <li>
+          <a className={select[0]} id="All" onClick={selectedAll}>
+            All
+          </a>
+        </li>
+        <li>
+          <a className={select[1]} id="Active" onClick={selectedActive}>
+            Active
+          </a>
+        </li>
+        <li>
+          <a className={select[2]} id="Completed" onClick={selectedCompleted}>
+            Completed
+          </a>
+        </li>
+      </ul>
 
             <button onClick={deleteCompleted} className={hiddenDelete(completed)}>
                 Clear completed

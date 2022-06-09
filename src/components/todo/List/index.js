@@ -1,6 +1,6 @@
 import { React } from 'react'
 
-function List({ setTodos, todos, hide }) {
+function List({ setTodos, todos }) {
 
     const changeStatus = (e) => {
         let changeTodo = todos.map((todo) => {
@@ -26,14 +26,31 @@ function List({ setTodos, todos, hide }) {
     }
 
     const allComplete = (e) => {
-        let allComplete = todos.map((todo) => {
-            if(todo.completed === false) {
-                console.log("hepsi tamam")
-            }
-            return todo;
-        });
-        e.target.defaultChecked = true
-        setTodos(allComplete);
+        let notComp = todos.filter((todo) => todo.completed === false)
+        if(notComp.length > 0){
+            let allComp = todos.map((todo) => {
+                if(todo.completed === false){
+                    return{...todo, completed: true};
+                }
+                return todo;
+            })
+            setTodos(allComp)
+        }
+        if(notComp.length === 0){
+            let allNotComp = todos.map((todo) => {
+                return {...todo, completed: false}
+            })
+            setTodos(allNotComp)
+        }
+    }
+
+    const isCompleted = (e) =>{
+        if(e.completed === true){
+            return "completed"
+        }
+        else if(e.completed === false){
+            return ""
+        }
     }
     
 
@@ -41,6 +58,7 @@ function List({ setTodos, todos, hide }) {
         <div>
             <div className="main">
                 <input
+                    id='toggle-all'
                     className="toggle-all"
                     type="checkbox"
                     onClick={allComplete}
@@ -52,7 +70,7 @@ function List({ setTodos, todos, hide }) {
                 <ul className={isHidden(todos)}>
                     {
                         todos.map((todo) => (
-                            <li key={todo.id} id={todo.id} className={todo.completed ? "completed":""}>
+                            <li key={todo.id} id={todo.id} className={isCompleted(todo)}>
                                 <div className="view">
                                     <input 
                                         className="toggle" 
